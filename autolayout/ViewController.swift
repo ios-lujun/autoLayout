@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         return textView
     }()
     
-    let previousButton: UIButton = {
+    private let previousButton: UIButton = {
         let previousButton = UIButton(type: .system)
         previousButton.setTitle("上一页", for: .normal)
         previousButton.setTitleColor(.gray, for: .normal)
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         return previousButton
     }()
     
-    let nextButton: UIButton = {
+    private  let nextButton: UIButton = {
         let nextButton = UIButton(type: .system)
         nextButton.setTitle("下一页", for: .normal)
         nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         return nextButton
     }()
     
-    let page: UIPageControl = {
+   private let page: UIPageControl = {
         let page = UIPageControl()
         page.currentPage = 0
         page.numberOfPages = 4
