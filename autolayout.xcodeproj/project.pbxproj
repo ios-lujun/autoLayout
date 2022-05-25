@@ -14,6 +14,8 @@
 		77115B63283D10E70004FD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77115B62283D10E70004FD1A /* Assets.xcassets */; };
 		77115B66283D10E70004FD1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77115B64283D10E70004FD1A /* LaunchScreen.storyboard */; };
 		77115B6E283D15DF0004FD1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77115B6D283D15DF0004FD1A /* Main.storyboard */; };
+		77332EB5283DF491002878E9 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77332EB4283DF491002878E9 /* SwipingController.swift */; };
+		77332EB7283DF6AC002878E9 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77332EB6283DF6AC002878E9 /* PageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		77115B65283D10E70004FD1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77115B67283D10E70004FD1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77115B6D283D15DF0004FD1A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		77332EB4283DF491002878E9 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
+		77332EB6283DF6AC002878E9 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			children = (
 				77115B59283D10E50004FD1A /* AppDelegate.swift */,
 				77115B5B283D10E50004FD1A /* SceneDelegate.swift */,
+				77332EB4283DF491002878E9 /* SwipingController.swift */,
+				77332EB6283DF6AC002878E9 /* PageCell.swift */,
 				77115B5D283D10E50004FD1A /* ViewController.swift */,
 				77115B5F283D10E50004FD1A /* Main1.storyboard */,
 				77115B6D283D15DF0004FD1A /* Main.storyboard */,
@@ -143,8 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				77115B5E283D10E50004FD1A /* ViewController.swift in Sources */,
+				77332EB7283DF6AC002878E9 /* PageCell.swift in Sources */,
 				77115B5A283D10E50004FD1A /* AppDelegate.swift in Sources */,
 				77115B5C283D10E50004FD1A /* SceneDelegate.swift in Sources */,
+				77332EB5283DF491002878E9 /* SwipingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
