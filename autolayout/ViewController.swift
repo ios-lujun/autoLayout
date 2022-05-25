@@ -19,11 +19,11 @@ class ViewController: UIViewController {
     let textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = .systemFont(ofSize: 16,weight: .bold)
+        let mutableAttributedString = NSMutableAttributedString(string: "加入我们，游戏和乐趣", attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)])
+        mutableAttributedString.append(.init(string: "\n\n\n你准备好迎接大量的乐趣了吗？不要再等了！我们希望很快能在我们的商店见到您.", attributes: [NSAttributedString.Key.foregroundColor:UIColor.gray,NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 12)]))
+        textView.attributedText = mutableAttributedString
         textView.isEditable = false
         textView.isScrollEnabled = false
-        textView.text = "加入我们，游戏和乐趣"
-        textView.backgroundColor = .yellow
         textView.textAlignment = .center
         return textView
     }()
@@ -36,16 +36,28 @@ class ViewController: UIViewController {
         
     }
     private func addConstraints(){
+        let topImageViewContainer = UIView.init()
+        topImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topImageViewContainer)
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 200),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            topImageViewContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            topImageViewContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            topImageViewContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            topImageViewContainer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+            
         ])
+        
+        topImageViewContainer.addSubview(imageView)
         NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
-            textView.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 0),
-            textView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: 0),
+            imageView.centerXAnchor.constraint(equalTo: topImageViewContainer.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: topImageViewContainer.centerYAnchor),
+            imageView.heightAnchor.constraint(equalTo: topImageViewContainer.heightAnchor, multiplier: 0.5)
+        ])
+
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: topImageViewContainer.bottomAnchor),
+            textView.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 24),
+            textView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -24),
             textView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
