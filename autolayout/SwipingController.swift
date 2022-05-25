@@ -12,7 +12,7 @@ struct Page{
 }
 
 class SwipingController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-   
+    
     var pages: [Page] = [
         .init(imageName: "bear_first", headerText: "加入我们，游戏和乐趣", bodyText: "你准备好迎接大量的乐趣了吗？不要再等了！我们希望很快能在我们的商店见到您."),
         .init(imageName: "heart_second", headerText: "订阅并获得我们日常活动的优惠券", bodyText: "当我们在我们的网站上宣布节省时，立即得到通知。确保也向我们提供您的任何反馈."),
@@ -43,17 +43,25 @@ class SwipingController: UICollectionViewController,UICollectionViewDelegateFlow
     }()
     
     @objc private func handlerPrevButton(){
+        
+            self.nextButton.isUserInteractionEnabled =  self.page.currentPage == (self.pages.count) ? false : true
+            
+            self.previousButton.isUserInteractionEnabled = self.page.currentPage == 1 ? false : true
         let index = max(self.page.currentPage - 1,0)
         let indexPath = IndexPath(item: index, section: 0)
         self.page.currentPage = index
-        collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     @objc private func handlerNextButton(){
+        self.nextButton.isUserInteractionEnabled =  self.page.currentPage == (self.pages.count) ? false : true
+        
+        self.previousButton.isUserInteractionEnabled = self.page.currentPage == 1 ? false : true
+        
         let index = min(self.page.currentPage + 1, pages.count - 1)
         let indexPath = IndexPath(item: index, section: 0)
         self.page.currentPage = index
-        collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
    private lazy var page: UIPageControl = {
@@ -75,7 +83,7 @@ class SwipingController: UICollectionViewController,UICollectionViewDelegateFlow
         
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: PageCell.cellId)
         collectionView.isPagingEnabled = true
-//        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         addComponseButtons()
     }
     
@@ -99,11 +107,19 @@ class SwipingController: UICollectionViewController,UICollectionViewDelegateFlow
         self.page.currentPage = Int(x / view.frame.width)
     }
     
-//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        let x = scrollView.contentOffset.x
-//        self.page.currentPage = Int(x / view.frame.width)
-//    }
-    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+       coordinator.animate { _ in
+            self.collectionViewLayout.invalidateLayout()
+            if self.page.currentPage == 0 {
+                self.collectionView.contentOffset = .zero
+            }else{
+                let indexPath = IndexPath(item: self.page.currentPage, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            }
+        } completion: { _ in
+            
+        }
+    }
 }
 
 
@@ -123,4 +139,3 @@ extension SwipingController{
         ])
     }
 }
-

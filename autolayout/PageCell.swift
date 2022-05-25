@@ -32,7 +32,7 @@ class PageCell: UICollectionViewCell {
         textView.attributedText = mutableAttributedString*/
         textView.isEditable = false
         textView.isScrollEnabled = false
-        textView.textAlignment = .center
+//        textView.textAlignment = .center
         return textView
     }()
     
@@ -65,6 +65,7 @@ class PageCell: UICollectionViewCell {
         mutableAttributedString.append(.init(string: "\n\n\n\(pageModel.bodyText)", attributes: [NSAttributedString.Key.foregroundColor:UIColor.gray,NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 13)]))
         
         self.textView.attributedText = mutableAttributedString
+        self.textView.textAlignment = .center
     }
     
 }
