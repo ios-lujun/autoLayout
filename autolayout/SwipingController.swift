@@ -117,7 +117,7 @@ class SwipingController: UICollectionViewController,UICollectionViewDelegateFlow
                 self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             }
         } completion: { _ in
-            
+            //123
         }
     }
 }
