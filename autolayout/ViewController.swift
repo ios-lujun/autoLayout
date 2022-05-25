@@ -7,6 +7,11 @@
 
 import UIKit
 
+extension UIColor {
+    static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+}
+
+
 class ViewController: UIViewController {
 
     let imageView: UIImageView = {
@@ -28,13 +33,60 @@ class ViewController: UIViewController {
         return textView
     }()
     
+    let previousButton: UIButton = {
+        let previousButton = UIButton(type: .system)
+        previousButton.setTitle("上一页", for: .normal)
+        previousButton.setTitleColor(.gray, for: .normal)
+        previousButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        previousButton.translatesAutoresizingMaskIntoConstraints = false
+        return previousButton
+    }()
+    
+    let nextButton: UIButton = {
+        let nextButton = UIButton(type: .system)
+        nextButton.setTitle("下一页", for: .normal)
+        nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        nextButton.setTitleColor(.mainPink, for: .normal)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        return nextButton
+    }()
+    
+    let page: UIPageControl = {
+        let page = UIPageControl()
+        page.currentPage = 0
+        page.numberOfPages = 4
+        page.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+        page.currentPageIndicatorTintColor = .mainPink
+        page.allowsContinuousInteraction = false
+        page.translatesAutoresizingMaskIntoConstraints = false
+        return page
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(imageView)
         view.addSubview(textView)
-       addConstraints()
-        
+        addConstraints()
+        addComponseButtons()
     }
+    private func addComponseButtons(){
+        let buttonControlsStackView = UIStackView(arrangedSubviews: [previousButton,page,nextButton])
+        buttonControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonControlsStackView.distribution = .fillEqually
+        view.addSubview(buttonControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            buttonControlsStackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            buttonControlsStackView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            buttonControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+}
+
+
+extension ViewController{
     private func addConstraints(){
         let topImageViewContainer = UIView.init()
         topImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -62,6 +114,4 @@ class ViewController: UIViewController {
         ])
     }
 
-
 }
-
